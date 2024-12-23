@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 menu = st.sidebar.radio(
     "Seleccione una opción: ",
     ("Registrar Ingresos", "Registrar Gastos", "Reportes")
@@ -53,21 +52,61 @@ if menu == "Registrar Ingresos":
             st.form_submit_button("Guardar")
 
 if menu == "Registrar Gastos":
-    opciones = st.selectbox("Seleccione un opción", ("Empleados", "Carne", "Vegetales", "Colas, Cerveza y Agua", "Servicios Basicos", "Articulos de limpieza", "Otros gastos"))
+    opciones = st.selectbox("Seleccione un opción", ("Empleados", "Carne","Cuero","Granos","Lacteos", "Vegetales", "Bebidas", "Servicios Basicos", "Articulos de limpieza", "Otros gastos"))
+   
     if opciones == "Empleados":
-        pass
+        with st.form(key="empleados", clear_on_submit=True):
+            fecha3 = st.date_input("Ingresa la fecha actual: ")
+            pago_empleado1 = st.number_input("Registre lo pagado a Emerzon: ")
+            pago_empleado2 = st.number_input("Registre lo pagado a Amelia: ")
+            pago_empleado3 = st.number_input("Registre lo pagado a Balto: ")
+            st.form_submit_button("Guardar")
+    if opciones == "Carne":
+        col1 , col2 , col3 = st.columns(3)
+        with col1:
+            st.header("Proalimec")
+            gasto_proalimec = st.number_input("Registre lo pagado:")
+            uploaded_files = st.file_uploader( "Choose a CSV file", accept_multiple_files=True)
+            for uploaded_file in uploaded_files:
+                bytes_data = uploaded_file.read()
+                st.write("Nombre de archivo:", uploaded_file.name)
+        with col2:
+            st.header("Pronaca")
+            gasto_pronaca = st.number_input("Registre lo pagado: ")
 
-    if opciones == "Servicios Basicos":
+        with col3:
+            st.header("Sr. Espinoza")
+            gasto_espinoza = st.number_input("Registre lo pagado")
+    
+
+
+    if opciones == "Cuero":
+        with st.form(key="cuero", clear_on_submit= True):
+            cuero = st.number_input("Registre lo pagado de cuero: ")
+            chicharron = st.number_input("Registre lo pagado de chicharron: ")
+            st.form_submit_button("Guardar")
+
+    if opciones == "Granos":
+        with st.form(key="cereales", clear_on_submit= True):
+            mote = st.number_input("Ingrese lo pagado de mote: ")
+            tostado = st.number_input("Ingrese lo pagado de tostado: ")
+            canguil = st.number_input("Ingrese lo pagado de canguil: ")
+            sal = st.number_input("Ingrese lo pagado de sal: ")
+            azucar = st.number_input("Ingrese lo pagado de azucar: ")
+            royal = st.number_input("Ingrese lo pagado de royal: ")
+            harina = st.number_input("Ingrese lo pagado de harina: ")
+            huevos = st.number_input("Ingrese lo pagado de huevos: ")
+            st.form_submit_button("Guardar")
+
+    if opciones == "Articulos de limpieza":
         pass
 
     if opciones == "Vegetales":
-        pass
-
-    if opciones == "Carne":
-        pass
-
-    if opciones == "Colas, Cerveza y Agua":
-        pass
-
-    if opciones == "Otros gastos":
-        pass
+        with st.form(key="vegetales", clear_on_submit= True):
+            aji = st.number_input("Ingrese lo pagado de ají: ")
+            cebolla = st.number_input("Ingrese lo pagado de cebolla: ")
+            papa = st.number_input("Inrese lo pagado de papa: ")
+            platano = st.number_input("Ingrese lo pagado de plátano: ")
+            tomate_arbol = st.number_input("Ingrese lo pagado de tomate de arbol: ")
+            cebolla_blanca = st.number_input("Ingrese lo pagado de cebolla blanca: ")
+            st.form_submit_button("Guardar")
